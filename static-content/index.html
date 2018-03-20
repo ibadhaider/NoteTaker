@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta HTTP-EQUIV="EXPIRES" CONTENT="-1">
+		<title>NoteTaker</title>
+		<link rel="apple-touch-icon" href="//mindmup.s3.amazonaws.com/lib/img/apple-touch-icon.png" />
+	   
+	    <link href="external/google-code-prettify/prettify.css" rel="stylesheet">
+	    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-responsive.min.css" rel="stylesheet">
+		<link href="http://netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css" rel="stylesheet">
+    	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+		<script src="external/jquery.hotkeys.js"></script>
+    	<script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+    	<script src="external/google-code-prettify/prettify.js"></script>
+		
+    	<script src="bootstrap-wysiwyg.js"></script>
+
+		<link href="https://fonts.googleapis.com/css?family=Concert+One" rel="stylesheet">
+		<link href='https://fonts.googleapis.com/css?family=Lato:400,300,900' rel='stylesheet'>
+		<link href="css-required.css" rel="stylesheet">
+
+		<script src="index.js"></script>
+
+	</head>
+	<body>
+	<nav class="navbar navbar-inverse">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span> 
+	      </button>
+	      <a class="navbar-brand" href="#">NoteTaker</a>
+	    </div>
+	    <div class="collapse navbar-collapse" id="myNavbar">
+	      <ul class="nav navbar-nav navbar-right">
+	        <li class="active"><a  id="home_click">Home</a></li>
+	        <li><a  id="change_user_info">User Settings</a></li>
+	        <li><a   id ="logout_click">Log Out</a></li> 
+	    </div>
+	  </div>
+	</nav>
+
+<div class="main_screen_area">
+  
+	<h1 class = "h1_inner_login">noteTaker</h1>
+
+	<div class="login-form">
+			<h1>Login or Register Here</h1>
+			<p class = "p_boxes">Enter UserID Here</p>
+			<input type="text" placeholder = "Enter UserID here" id = "user_id_login" class="username_css" />
+			<p class = "p_boxes">Enter Password Here</p> 
+			<input type="password" placeholder = "Password goes here" id = "password_text_login"  class="username_css" />
+			<button type="button" id = "login_button" >Sign In</button>
+			<button type="button" id = "create_account_button">Register</button>
+			<div id="errors_login"></div>
+			<p></p>
+		</div>
+	<div class = "registration-form">
+            <fieldset>
+            <h2 class="text-center">REGISTRATION FORM</h2>
+            <p class="text-center">Already have an account? <button type="button" id = "registration_login_btn" class="btn btn-primary">Login Here</button></p>
+            <div class="form-group"> 	 
+                <label for="name"><span class="req">* </span> Full Name: </label>
+                    <input class="form-control" type="text" name="name" placeholder="Enter your full name here" id = "full_name" pattern="[A-Za-z\s]+" onkeyup = "validate_name(this)" required>     
+            </div> </p>
+
+            <div class="form-group">
+                <label for="username"><span class="req">* </span> ID (must be integer): </label> 
+                    <input class="form-control" placeholder="Enter userID here" minlength="0" maxlength="50" pattern="[0-9]+" onkeyup = "validate_id(this)" type="text" name="username" id = "usr" required>  
+            </div> </p>
+
+            <div class="form-group">
+                <label for="email"><span class="req">* </span> Email Address: </label> 
+                    <input class="form-control" placeholder="Enter email here" required type="text" name="email" id = "email" required/>   
+            </div> </p>
+
+
+            <div class="form-group">
+                <label for="password"><span class="req">* </span> Password: </label>
+                    <input required name="password" minlength="8" maxlength="50" pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,50}$" type="password" class="form-control" placeholder="Enter password here" id="password1" required/> </p>
+
+                <label for="password"><span class="req">* </span> Confirm Your Password: </label>
+                    <input required name="password" type="password" pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,50}$" minlength="8" maxlength="50" class="form-control" placeholder="Enter pass again to confirm"  id="password2" onkeyup="checkPassword(); return false;" /> </p>
+                        <span id="confirmMessage" class="confirmMessage"></span> </p> </p>
+            </div>
+
+            <div class = "form-group">
+            	<label for="gender"><span class="req">* </span> Gender:</label>
+	            <input type="radio" name="gender" id = 'male_check_register' value="Male" required> Male
+				<input type="radio" name="gender" id = 'female_check_register' value="Female"> Female
+				<input type="radio" name="gender" id = 'other_check_register' value="Other"> Other
+	        </div> </p>
+
+	        <div class="test-group">         
+                
+                <input required type="checkbox" name="terms" id="field_terms"><label for="terms">Check this if you want to use the app.</label></p>
+            </div>
+
+            <div class="form-group">
+                <input class="btn" id ="register_submit_button" type="submit" name="submit_reg" value="Register">
+            </div>
+            <div id="errors_registration"></div>
+            </fieldset>
+
+	</div>
+	 
+</div> 
+
+<div class="container">
+	<div class = "user_profile">
+	<br><br><br>
+	  <fieldset>
+	    	<h2 class="text-center">USER PROFILE SUMMARY</h2>
+	    
+	        <p class="text-center">Want to delete your profile? <button type="button" id = "profile_delete_btn" class="btn btn-primary">Delete Here</button></p>
+	            <div class="form-group"> 	 
+	                <label for="name"><span class="req">* </span> Do you want to change your name? </label>
+	                    <input class="form-control" type="text" placeholder = "Enter full name here" id = "full_name_summary" pattern="[A-Za-z\s]+" onkeyup = "validate_name(this)" required>     
+	            </div>
+
+	            <div class="form-group">
+	                <label for="username"><span class="req">* </span> Do you want to change your username? </label> 
+	                    <input class="form-control" type="text" name="username" placeholder="Enter username here"  minlength="0" maxlength="50" pattern="[0-9]+" onkeyup = "validate_id(this)" id = "usr_summary" required>  
+	            </div>
+
+	            <div class="form-group">
+	                <label for="email"><span class="req">* </span> Do you want to change your email address? </label> 
+	                    <input class="form-control" placeholder="Enter e-mail here"  required type="text" name="email" id = "email_profile_summary"  required/>   
+	                        <div class="status" id="status"></div>
+	            </div>
+
+
+	            <div class="form-group">
+	                <label for="password"><span class="req">* </span> Do you want to change your password? <br> If not, enter your current password to keep it.</label>
+	                    <input required name="password" type="password" placeholder="Enter password" class="form-control inputpass" id="password1_summary" required/> </p>
+
+	                <label for="password"><span class="req">* </span> Confirm Your Password: </label>
+	                    <input required name="password" type="password" class="form-control inputpass" placeholder="Enter pass again to confirm"  id="password2_summary" onkeyup="checkPassword(); return false;">
+	                        <span id="confirmMessage" class="confirmMessage"></span>
+	            </div>
+
+	            <div class = "gender-group">
+	            	<label for="gender"><span class="req">* </span> Do you want to change your chosen gender?</label>
+		            <input type="radio" id = "male_check_profile" name="gender" value="male" required> Male
+					<input type="radio" name="gender" id = "female_check_profile" value="female"> Female
+					<input type="radio" name="gender" id = "other_check_profile" value="other"> Other
+		        </div>
+	            
+	            <div class="form-group">
+	                <input class="btn btn-success" id = "submit_profile_change" type="submit" name="submit_reg" value="Submit">
+	            </div>
+
+	            <div id="errors_profile_update"></div>
+	    </fieldset>
+
+	</div>
+
+
+</div>
+<div class="container-fluid" id="home">
+	<div class="row">
+		<div class="col-lg-3"> 
+			<h1>Your Notes:</h1>
+			<button id="newNote">+ New Note</button>
+
+			<div class="list-group" id="noteList">
+			  
+			</div>
+		</div>
+
+		<div class="col-lg-9">
+			<div align="right">
+				<button type="button" class="btn btn-danger btn-md" id="deleteButton">Delete</button>
+		      	<button type="button" class="btn btn-success btn-md" id="saveButton">Save</button>
+		      	<br>
+		      	<span>Saved at: </span>
+		      	<span id="saveAlert">Never</span>
+		      </div>
+			<div class="btn-toolbar" data-role="editor-toolbar" data-target="#editor">
+		      <div class="btn-group">
+		        <a class="btn dropdown-toggle" data-toggle="dropdown" title="Font"><i class="icon-font"></i><b class="caret"></b></a>
+		          <ul class="dropdown-menu">
+		          </ul>
+		        </div>
+		      <div class="btn-group">
+		        <a class="btn dropdown-toggle" data-toggle="dropdown" title="Font Size"><i class="icon-text-height"></i>&nbsp;<b class="caret"></b></a>
+		          <ul class="dropdown-menu">
+		          <li><a data-edit="fontSize 5"><font size="5">Huge</font></a></li>
+		          <li><a data-edit="fontSize 3"><font size="3">Normal</font></a></li>
+		          <li><a data-edit="fontSize 1"><font size="1">Small</font></a></li>
+		          </ul>
+		      </div>
+		      <div class="btn-group">
+		        <a class="btn" data-edit="bold" title="Bold (Ctrl/Cmd+B)"><i class="icon-bold"></i></a>
+		        <a class="btn" data-edit="italic" title="Italic (Ctrl/Cmd+I)"><i class="icon-italic"></i></a>
+		        <a class="btn" data-edit="strikethrough" title="Strikethrough"><i class="icon-strikethrough"></i></a>
+		        <a class="btn" data-edit="underline" title="Underline (Ctrl/Cmd+U)"><i class="icon-underline"></i></a>
+		      </div>
+		      <div class="btn-group">
+		        <a class="btn" data-edit="insertunorderedlist" title="Bullet list"><i class="icon-list-ul"></i></a>
+		        <a class="btn" data-edit="insertorderedlist" title="Number list"><i class="icon-list-ol"></i></a>
+		        <a class="btn" data-edit="outdent" title="Reduce indent (Shift+Tab)"><i class="icon-indent-left"></i></a>
+		        <a class="btn" data-edit="indent" title="Indent (Tab)"><i class="icon-indent-right"></i></a>
+		      </div>
+		      <div class="btn-group">
+		        <a class="btn" data-edit="justifyleft" title="Align Left (Ctrl/Cmd+L)"><i class="icon-align-left"></i></a>
+		        <a class="btn" data-edit="justifycenter" title="Center (Ctrl/Cmd+E)"><i class="icon-align-center"></i></a>
+		        <a class="btn" data-edit="justifyright" title="Align Right (Ctrl/Cmd+R)"><i class="icon-align-right"></i></a>
+		        <a class="btn" data-edit="justifyfull" title="Justify (Ctrl/Cmd+J)"><i class="icon-align-justify"></i></a>
+		      </div>	     
+		      <div class="btn-group">
+		        <a class="btn" data-edit="undo" title="Undo (Ctrl/Cmd+Z)"><i class="icon-undo"></i></a>
+		        <a class="btn" data-edit="redo" title="Redo (Ctrl/Cmd+Y)"><i class="icon-repeat"></i></a>
+		      </div>
+		 
+		      Title: <input type="text" id="title" value="Untitled">
+		    </div>
+		    
+			<div id="alerts"></div>
+			<div id="editor"></div>
+		</div>	
+
+	</div>
+
+
+</div>
+</body>
+</html>
